@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/events.css">
+    <style>
+        :root {
+            --main-color: #3867d6; /* Default color */
+        }
+    </style>
+</head>
+<body>
+   <header class="header">
+        <a href="index.html" class="logo"><span>e</span>ventAura</a>
+        
+        <div id="menu-bars" class="fas fa-bars"></div>
+   </header>
+
+   <section class="venue" id="venue">
+    
+    <h1 class="main-heading">Concert Venues</h1>
+    <div class="venue-list">
+        <div class="venue-box">
+            <img src="concertimg/concert1.jpg" alt="img">
+            <div class="venue-info">
+                <h2>DIVINE Time Tour</h2>
+                <p>Pune</p>
+                <button class="btn" onclick="location.href='concert1.html'">More Info</button>
+            </div>
+        </div>
+        <div class="venue-box">
+            <img src="concertimg/concert2.jpg" alt="img">
+            <div class="venue-info">
+                <h2>Emiway Bantai Live</h2>
+                <p>Mumbai</p>
+                <button class="btn" onclick="location.href='concert2.html'">More Info</button>
+            </div>
+        </div>
+        <div class="venue-box">
+            <img src="concertimg/concert3.jpeg" alt="img">
+            <div class="venue-info">
+                <h2>ABHANGWARI</h2>
+                <p>Mumbai</p>
+                <button class="btn" onclick="location.href='concert3.html'">More Info</button>
+            </div>
+        </div>
+        <div class="venue-box">
+            <img src="concertimg/concert4.jpg" alt="img">
+            <div class="venue-info">
+                <h2>Arijit Singh Concerts</h2>
+                <p>Delhi</p>
+                <button class="btn" onclick="location.href='concert4.html'">More Info</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+    <div class="credit"> created by <span>sahil bandekar</span> | all rights reserved </div>
+</section>
+
+<script>
+    window.onload = () => {
+        let storedColor = localStorage.getItem('themeColor');
+        if (storedColor) {
+            document.documentElement.style.setProperty('--main-color', storedColor);
+        }
+    };
+</script>
+
+</body>
+</html>

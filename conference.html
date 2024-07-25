@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/conference.css">
+    <style>
+        :root {
+            --main-color: #3867d6; /* Default color */
+        }
+    </style>
+</head>
+<body>
+   <header class="header">
+        <a href="index.html" class="logo"><span>e</span>ventAura</a>
+        
+        <div id="menu-bars" class="fas fa-bars"></div>
+   </header>
+
+   <section class="venue" id="venue">
+    <h1 class="main-heading">Conference Venues</h1>
+    <div class="venue-list">
+        <div class="venue-box">
+            <img src="confimg/conf4.jpg" alt="img">
+            <div class="venue-info">
+                <h2>International Conference on Advanced Electrical and Electronics Engineering (ICAEEE)</h2>
+                <p>Mumbai</p>
+                <button class="btn" onclick="location.href='conf1.html'">More Info</button>
+            </div>
+        </div>
+        <div class="venue-box">
+            <img src="confimg/conf1.png" alt="img">
+            <div class="venue-info">
+                <h2>International Conference on Robotics, Machine Learning and Artificial Intelligence (ICRMLAI)</h2>
+                <p>Mumbai</p>
+                <button class="btn" onclick="location.href='conf2.html'">More Info</button>
+            </div>
+        </div>
+        <div class="venue-box">
+            <img src="confimg/conf2.jpg" alt="img">
+            <div class="venue-info">
+                <h2>International Conference on Medical, Pharmaceutical and Health Sciences (ICMPH)</h2>
+                <p>Delhi</p>
+                <button class="btn" onclick="location.href='conf3.html'">More Info</button>
+            </div>
+        </div>
+        <div class="venue-box">
+            <img src="confimg/conf3.jpg" alt="img">
+            <div class="venue-info">
+                <h2>International Conference on Electrical Engineering and Control Technologies (ICEECT)</h2>
+                <p>Chennai</p>
+                <button class="btn" onclick="location.href='conf4.html'">More Info</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    window.onload = () => {
+        let storedColor = localStorage.getItem('themeColor');
+        if (storedColor) {
+            document.documentElement.style.setProperty('--main-color', storedColor);
+        }
+    };
+</script>
+
+<section class="footer">
+    <div class="credit"> created by <span>sahil bandekar</span> | all rights reserved </div>
+</section>
+
+</body>
+</html>
