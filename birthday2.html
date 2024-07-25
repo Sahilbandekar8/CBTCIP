@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/birthday.css">
+    <style>
+        :root {
+            --main-color: #3867d6; /* Default color */
+        }
+    </style>
+</head>
+<body>
+   <header class="header">
+        <a href="index.html" class="logo"><span>e</span>ventAura</a>
+        
+        <div id="menu-bars" class="fas fa-bars"></div>
+   </header>
+
+    <section class="venue-detail" id="venue-detail">
+        <div class="venue-header">
+            <img src="birthdayimg/birthday2.jpg" alt="Jaypee Vasant Continental">
+            <div class="venue-info">
+                <h1>The Ocean Pearl Retreat</h1>
+                <p>Chattarpur</p>
+                <div class="ratings">
+                    <span class="stars">★★★★☆</span>
+                    <span class="review-count">(55 reviews)</span>
+                </div>
+                <div class="price" data-price="3500">
+                    <p>Starting from <span>₹3500</span> per day</p>
+                </div><br>
+                <div class="form-group">
+                    <label for="people-count">Number of People:</label>
+                    <input type="number" id="people-count" name="people-count" min="1" required>
+                </div>
+                <button class="btn-book" onclick="bookNow()">Book Now</button>
+            </div>
+        </div>
+        <div class="venue-details">
+            <h2>About the Venue</h2>
+            <p>At Ocean Pearl Retreat, we help you host your elegant occasions with a world-class experience. We are located just 6 km from the Qutub Minar -a 12th century monument and close to the Chattarpur Metro Station. The ambience of our deluxe rooms and suites, landscaped lawns, and banquet halls sets the stage for a memorable event.</p>
+            <h2>Facilities</h2>
+            <ul>
+                <li>Free Wi-Fi</li>
+                <li>Parking Available</li>
+                <li>Swimming Pool</li>
+                <li>Conference Hall</li>
+                <li>Banquet Hall</li>
+            </ul>
+            <h2>Ratings</h2>
+            <div class="ratings-summary">
+                <div class="rating-item">
+                    <span class="rating-category">Cleanliness:</span>
+                    <span class="rating-score">4.5</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-category">Service:</span>
+                    <span class="rating-score">4.0</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-category">Location:</span>
+                    <span class="rating-score">4.7</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-category">Value for Money:</span>
+                    <span class="rating-score">4.2</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="credit"> created by <span>sahil bandekar</span> | all rights reserved </div>
+    </section>
+
+    <script>
+        function bookNow() {
+            const peopleCount = document.getElementById('people-count').value;
+            const price = document.querySelector('.price').getAttribute('data-price');
+            if (peopleCount) {
+                window.location.href = `payment.html?people-count=${peopleCount}&price=${price}`;
+            } else {
+                alert('Please enter the number of people.');
+            }
+        }
+    
+        window.onload = () => {
+            let storedColor = localStorage.getItem('themeColor');
+            if (storedColor) {
+                document.documentElement.style.setProperty('--main-color', storedColor);
+            }
+        };
+    </script>
+</body>
+</html>
