@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/birthday.css">
+    <style>
+        :root {
+            --main-color: #3867d6; /* Default color */
+        }
+    </style>
+</head>
+<body>
+   <header class="header">
+        <a href="index.html" class="logo"><span>e</span>ventAura</a>
+        
+        <div id="menu-bars" class="fas fa-bars"></div>
+   </header>
+
+    <section class="venue-detail" id="venue-detail">
+        <div class="venue-header">
+            <img src="marriageimg/marriage3.jpg" alt="Jaypee Vasant Continental">
+            <div class="venue-info">
+                <h1>The Backwaters of Kerala</h1>
+                <p>Go A Little Offbeat</p>
+                <div class="ratings">
+                    <span class="stars">★★★★☆</span>
+                    <span class="review-count">(500 reviews)</span>
+                </div>
+                <div class="price" data-price="200000">
+                    <p>Starting from <span>₹200000</span> per day</p>
+                </div><br>
+                <div class="form-group">
+                    <label for="people-count">Number of Days:</label>
+                    <input type="number" id="people-count" name="people-count" min="1" required>
+                </div>
+                <button class="btn-book" onclick="bookNow()">Book Now</button>
+            </div>
+        </div>
+        <div class="venue-details">
+            <h2>About the Venue</h2>
+            <p>The Backwaters of Kerala offer a tranquil and offbeat wedding destination with their serene canals, lush greenery, and traditional houseboats. Ideal for intimate and unique celebrations, the backwaters provide picturesque settings and a peaceful ambiance. Venues range from luxury resorts to traditional Kerala homes, with options for beautiful outdoor ceremonies by the water. The rich culture, scenic beauty, and unique charm of the backwaters make it a perfect choice for a memorable and serene wedding.</p>
+            <h2>Facilities</h2>
+            <ul>
+                <li>Luxurious Venues</li>
+                <li>Cultural Performances</li>
+                <li>Floral Decor</li>
+                <li>Photography and Videography</li>
+                <li>Spa and Wellness</li>
+            </ul>
+            <h2>Ratings</h2>
+            <div class="ratings-summary">
+                <div class="rating-item">
+                    <span class="rating-category">Cleanliness:</span>
+                    <span class="rating-score">4.5</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-category">Service:</span>
+                    <span class="rating-score">4.0</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-category">Location:</span>
+                    <span class="rating-score">4.7</span>
+                </div>
+                <div class="rating-item">
+                    <span class="rating-category">Value for Money:</span>
+                    <span class="rating-score">4.2</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="credit"> created by <span>sahil bandekar</span> | all rights reserved </div>
+    </section>
+
+    <script>
+        function bookNow() {
+            const peopleCount = document.getElementById('people-count').value;
+            const price = document.querySelector('.price').getAttribute('data-price');
+            if (peopleCount) {
+                window.location.href = `marriagepay.html?people-count=${peopleCount}&price=${price}`;
+            } else {
+                alert('Please enter the number of people.');
+            }
+        }
+    
+        window.onload = () => {
+            let storedColor = localStorage.getItem('themeColor');
+            if (storedColor) {
+                document.documentElement.style.setProperty('--main-color', storedColor);
+            }
+        };
+    </script>
+</body>
+</html>

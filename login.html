@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <header class="header">
+        <a href="" class="logo"><span>e</span>ventAura</a>
+        <div id="menu-bars" class="fas fa-bars"></div>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-container">
+            <h1>Login</h1>
+            <form id="loginForm" action="index.html" method="POST">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-auth">Login</button>
+                <p>Don't have an account? <a href="registration.html">Register here</a></p>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+
+            // Retrieve user data from local storage
+            let storedUsername = localStorage.getItem('username');
+            let storedPassword = localStorage.getItem('password');
+
+            if (username === storedUsername && password === storedPassword) {
+                alert('Login successful!');
+                localStorage.setItem('loggedInUser', username); // Store logged-in user in local storage
+                window.location.href = 'index.html'; // Redirect to home page
+            } else {
+                alert('Incorrect username or password.');
+            }
+        });
+    </script>
+
+</body>
+</html>
