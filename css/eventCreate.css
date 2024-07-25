@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+  --main-color: #3867d6;
+}
+
+* {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: .2s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-padding-top: 7rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: #444;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 5rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #222;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 9%;
+}
+
+.header .logo {
+  font-weight: bolder;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.header .logo span {
+  color: var(--main-color);
+}
+
+.header .navbar a {
+  font-size: 1.7rem;
+  color: #fff;
+  margin-left: 2rem;
+}
+
+.header .navbar a:hover {
+  color: var(--main-color);
+}
+
+#menu-bars {
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+
+body {
+  background: #222;
+}
+
+section {
+  padding: 2rem 9%;
+}
+
+nav button {
+  padding: 8px 15px;
+  margin-right: 2rem;
+  background: #666;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+nav button:hover {
+  background: var(--main-color);
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.section {
+  display: none;
+  margin-top: 8rem;
+}
+
+.section h2{
+  color: #fff;
+  font-size: 3rem;
+}
+
+form {
+  flex-direction: column;
+  gap: 30px;
+}
+
+form label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+form input, form select {
+  width: 40rem;;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px;
+  background: #666;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+form button:hover {
+  background: var(--main-color);
+}
+
+.section #guest-name {
+  width: 30rem;
+}
+
+#manage-invitations button{
+  padding: 10px;
+  background: #666;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#manage-invitations button:hover{
+  background: var(--main-color);
+}
+
+.section #budget-form #expenseAmount{
+  margin-top: 2rem;
+}
+
+.section #vendor-form input{
+  margin-top: 2rem;
+}
+
+.section #scheduleForm input{
+  margin-top: 2rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  color: #fff;
+}
+
+ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.5rem;
+}
+
+.credit a {
+  color: var(--main-color);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.event-image-button {
+  /* Set the dimensions of the button */
+  width: 800px;  /* Increased width */
+  height: 600px; /* Increased height */
+  
+  /* Ensure the background image covers the button */
+  background-size: cover; /* Ensures the image covers the entire button */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  
+  /* Style the button */
+  border: none; /* Removes default button border */
+  color: white; /* Text color */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Vertical layout of child elements */
+  align-items: center; /* Center-aligns child elements horizontally */
+  justify-content: center; /* Center-aligns child elements vertically */
+  cursor: pointer; /* Pointer cursor on hover */
+  position: relative; /* Allows positioning of child elements */
+}
+
+.event-image-button span {
+  font-size: 1rem; /* Adjust font size as needed */
+  margin: 5px; /* Adds margin between text elements */
+}
+
+.event-image-button .delete-event {
+  padding: 10px;
+  background: #666;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.event-image-button .delete-event:hover{
+  background: var(--main-color);
+}
+
+
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1.5rem 2rem;
+  }
+
+  section {
+    padding: 2rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form label, form input, form select, form button {
+    width: 100%;
+  }
+}
+
+@media (max-width:991px) {
+  html{
+      font-size: 55%;
+      
+  }
+  .header{
+      padding: 1.5rem 2rem;
+  }
+  section{
+      padding: 2rem;
+  }
+}
+
+@media (max-width:768px){
+  #menu-bars{
+      display: initial;
+  }
+  .header .navbar{
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      border-top: .1rem solid #222;
+      background: #333;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .navbar.active{
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .fa-times{
+      transform: rotate(180deg);
+  }
+
+  .header .navbar a{
+      display: flex;
+      background: #222;
+      border-radius: .5rem;
+      padding: 1.3rem;
+      margin: 1.3rem;
+      font-size: 2rem;
+  }
+
+  .home .content h3{
+      font-size: 4rem;
+  }
+}
+
+@media (max-width:450px) {
+  html{
+      font-size: 50%;
+  }
+  .home .home-slider .swiper-slide{
+      width: 27rem;
+  }
+  .contact form .inputBox input{
+    width: 100%;
+  }
+}

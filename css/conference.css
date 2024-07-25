@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --main-color: #3867d6;
+}
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+    background: #444;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+
+body {
+    background: #222;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+#menu-bars {
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 9%;
+}
+
+.header .logo {
+    font-weight: bolder;
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.header .logo span {
+    color: var(--main-color);
+}
+
+.header .navbar a {
+    font-size: 1.7rem;
+    color: #fff;
+    margin-left: 2rem;
+}
+
+.header .navbar a:hover {
+    color: var(--main-color);
+}
+
+.venue{
+    margin-top: 5rem;
+}
+
+.main-heading {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 4rem;
+    color: #fff;
+}
+
+.venue .venue-list {
+    margin-top: 5rem;
+    height: 40rem;
+    width: 45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 15rem; 
+}
+
+.venue .venue-list .venue-box {
+    flex: 1 1 50rem;
+    border: 1rem solid #333;
+    border-radius: .5rem;
+    margin: 1rem;
+    position: relative;
+    border-radius: .6rem;
+    overflow: hidden;
+    height: 30rem;
+    width: 45rem;
+    cursor: pointer;
+}
+
+.venue .venue-list .venue-box img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    
+}
+
+.venue .venue-list .venue-box .venue-info {
+    display: flex;
+    flex-flow: column;
+    
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    background: rgba(46, 39, 40, 0.5);
+    transform: scale(1.3);
+    opacity: 0;
+    transition: 1s ease;
+}
+
+.venue .venue-list .venue-box:hover .venue-info {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.venue .venue-list .venue-box .venue-info h2 {
+    letter-spacing: .1rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.venue .venue-list .venue-box .venue-info p {
+    letter-spacing: .1rem;
+    font-size: 2rem;
+}
+
+.venue .venue-list .venue-box .venue-info .btn {
+    width: 12rem;
+    height: 4rem;
+    margin: 1rem;
+    padding: .6rem;
+    letter-spacing: .1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    background: #666;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.venue .venue-list .venue-box .venue-info .btn:hover {
+    background: var(--main-color);
+}
+
+.footer{
+    margin-top: 40rem;
+    background: #111;
+}
+
+.footer .credit{
+    text-align: center;
+    border-top: .1rem solid #222;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.footer .credit span{
+    color: var(--main-color);
+}
+
+.theme-toggler{
+    position: fixed;
+    top: 10rem; right: -20rem;
+    background: #333;
+    z-index: 1000;
+    width: 20rem;
+    text-align: center;
+}
+
+.theme-toggler.active{
+    right: 0;
+}
+
+.theme-toggler h3{
+    color: #fff;
+    padding: 1rem 0;
+    font-size: 2rem;
+}
+
+.theme-toggler .buttons{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.theme-toggler .buttons .theme-btn{
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.theme-toggler .toggle-btn{
+    position: absolute;
+    top: 0; left: -5.9rem;
+    padding: 1.3rem 1.5rem;
+    background: #333;
+    cursor: pointer;
+}
+
+.theme-toggler .toggle-btn i{
+    color: #fff;
+    font-size: 3rem;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin{
+    0%{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+@media (max-width:991px) {
+  html{
+      font-size: 55%;
+      
+  }
+  .header{
+      padding: 1.5rem 2rem;
+  }
+  section{
+      padding: 2rem;
+  }
+}
+
+@media (max-width:768px){
+  #menu-bars{
+      display: initial;
+  }
+  .header .navbar{
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      border-top: .1rem solid #222;
+      background: #333;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .navbar.active{
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .fa-times{
+      transform: rotate(180deg);
+  }
+
+  .header .navbar a{
+      display: flex;
+      background: #222;
+      border-radius: .5rem;
+      padding: 1.3rem;
+      margin: 1.3rem;
+      font-size: 2rem;
+  }
+
+  .home .content h3{
+      font-size: 4rem;
+  }
+}
+
+@media (max-width:450px) {
+  html{
+      font-size: 50%;
+  }
+  .home .home-slider .swiper-slide{
+      width: 27rem;
+  }
+  .contact form .inputBox input{
+    width: 100%;
+  }
+}
