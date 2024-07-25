@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/noconference.css">
+    <style>
+        :root {
+            --main-color: #3867d6; /* Default color */
+        }
+    
+        .success-animation {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) rotateY(180deg);
+            z-index: 9999;
+            background-color: #c51818;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out forwards;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-50%) translateY(10%) rotateY(180deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-240%) rotateY(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo"><span>e</span>ventAura</a>
+            <div id="menu-bars" class="fas fa-bars"></div>
+        </header>
+
+        <section class="payment-section">
+            <div class="payment-container">
+                <h1>Sorry!</h1>
+                <div class="confirmation-details">
+                    <p>No conference for now!</p>
+                    <a href="index.html" class="btn">Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="credit"> created by <span>sahil bandekar</span> | all rights reserved </div>
+    </footer>
+
+    <div id="success-animation" class="success-animation">
+        <i class="fas fa-frown fa-4x"></i>
+        <p>Visit again!</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const successAnimation = document.getElementById('success-animation');
+            successAnimation.style.display = 'block';
+        });
+   
+        window.onload = () => {
+            let storedColor = localStorage.getItem('themeColor');
+            if (storedColor) {
+                document.documentElement.style.setProperty('--main-color', storedColor);
+            }
+        };
+    </script>
+</body>
+</html>

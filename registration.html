@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <header class="header">
+        <a href="" class="logo"><span>e</span>ventAura</a>
+        <div id="menu-bars" class="fas fa-bars"></div>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-container">
+            <h1>Register</h1>
+            <form id="register-form" action="login.html" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required pattern=".{4,}" title="Username must be at least 4 characters long">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required pattern=".{6,}" title="Password must be at least 6 characters long">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirmpassword" required>
+                </div>
+                <button type="submit" class="btn-auth">Register</button>
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById('username').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            let condirmpassword = document.getElementById('confirm-password').value;
+
+            // Save user data to local storage
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password); // Note: Insecure, use hashing in real scenarios
+            localStorage.setItem('confirm-password', condirmpassword);
+
+            alert('Registration successful!');
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+    </script>
+</body>
+</html>
