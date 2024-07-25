@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventPlanner360</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/eventCreate.css">
+  <style>
+    :root {
+      --main-color: #3867d6; /* Default color */
+    }
+    .event-image-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      width: 200px;
+      height: 100px;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+    }
+    .delete-event {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: red;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <a href="index.html" class="logo"><span>e</span>ventAura</a>
+      <nav class="navbar">
+        <button id="create-event-btn">Create Event</button>
+        <button id="guest-list-btn">Guest List</button>
+        <button id="invitation-btn">Manage Invitations</button>
+        <button id="budget-btn">Budget Tracking</button>
+        <button id="vendor-btn">Vendor Coordination</button>
+        <button id="scheduling-btn">Scheduling</button>
+      </nav>
+      <div id="menu-bars" class="fas fa-bars"></div>
+    </header>
+
+    <main class="main-content">
+      <!-- Event Creation Form -->
+      <section id="create-event" class="section">
+        <h2>Create Event</h2><br><br>
+        <form id="event-form">
+          <label for="event-name">Event Name:</label><br>
+          <input type="text" id="event-name" required><br><br>
+
+          <label for="event-date">Event Date:</label><br>
+          <input type="date" id="event-date" required><br><br>
+
+          <label for="event-theme">Event Theme:</label><br>
+          <select id="event-theme" required>
+            <option value="default">Default</option>
+            <option value="party">Party</option>
+            <option value="conference">Conference</option>
+            <option value="wedding">Wedding</option>
+            <option value="anniversary">Anniversary</option>
+            <option value="concert">Concert</option>
+          </select><br><br><br>
+
+          <button type="submit" id="create">Create Event</button>
+          <button type="button" id="create-next">Next</button>
+        </form>
+      </section>
+
+      <!-- Guest List Management -->
+      <section id="guest-list" class="section">
+        <h2>Guest List</h2><br><br>
+        <form id="guest-form">
+          <label for="guest-name">Guest Name:</label><br>
+          <input type="text" id="guest-name" required><br><br>
+          <label for="guest-email">Guest Email:</label><br>
+          <input type="email" id="guest-email" required><br><br>
+          <button type="submit" id="add-guest">Add Guest</button>
+          <button type="button" id="guest-next">Next</button>
+        </form><br>
+        <ul id="guest-list-display"></ul>
+      </section>
+
+      <!-- Invitation Management -->
+      <section id="manage-invitations" class="section">
+        <div class="invitation">
+          <h2>Manage Invitations</h2><br><br>
+          <button id="send-invitations">Send Invitations</button><br><br><br>
+          <button id="track-rsvps">Track RSVPs</button>
+          <button type="button" id="invitation-next">Next</button>
+        </div>
+      </section>
+
+      <!-- Budget Tracking Section -->
+      <section id="budget-tracking" class="section">
+        <h2>Budget Tracking</h2><br><br>
+        <form id="budget-form">
+          <input type="text" id="expenseName" placeholder="Expense Name" required><br>
+          <input type="number" id="expenseAmount" placeholder="Expense Amount" required><br><br>
+          <button type="submit">Add Expense</button>
+          <button type="button" id="budget-next">Next</button>
+        </form>
+        <ul id="expenseList"></ul>
+        <div id="totalBudget"></div>
+      </section>
+
+      <!-- Vendor Coordination Section -->
+      <section id="vendor-coordination" class="section">
+        <h2>Vendor Coordination</h2><br><br>
+        <form id="vendor-form">
+          <input type="text" id="vendorName" placeholder="Vendor Name" required><br>
+          <input type="text" id="vendorService" placeholder="Service Provided" required><br>
+          <input type="tel" id="vendorContact" placeholder="Contact Number" required><br><br>
+          <button type="submit">Add Vendor</button>
+          <button type="button" id="vendor-next">Next</button>
+        </form>
+        <ul id="vendorList"></ul>
+      </section>
+
+      <!-- Scheduling Section -->
+      <section id="scheduling" class="section">
+        <h2>Scheduled Events</h2><br><br>
+        <form id="scheduleForm">
+          
+        </form>
+        
+        <ul id="taskList"></ul>
+        <div id="event-details"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="credit"> created by <span><a href="https://www.linkedin.com/in/sahil-bandekar18?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BvUzvIhzwSF6NNTmraJSQvQ%3D%3D">sahil bandekar</a></span> | all rights reserved </div>
+    </footer>
+  </div>
+
+  <script>
+    window.onload = () => {
+        let storedColor = localStorage.getItem('themeColor');
+        if (storedColor) {
+            document.documentElement.style.setProperty('--main-color', storedColor);
+        }
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/eventCreate.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // References to sections
+      const createEventSection = document.getElementById('create-event');
+      const guestListSection = document.getElementById('guest-list');
+      const manageInvitationsSection = document.getElementById('manage-invitations');
+      const budgetTrackingSection = document.getElementById('budget-tracking');
+      const vendorCoordinationSection = document.getElementById('vendor-coordination');
+      const schedulingSection = document.getElementById('scheduling');
+
+      // References to buttons
+      const createEventBtn = document.getElementById('create-event-btn');
+      const nextBtn = document.getElementById('create-next');
+      const guestListBtn = document.getElementById('guest-list-btn');
+      const guestNextBtn = document.getElementById('guest-next');
+      const invitationBtn = document.getElementById('invitation-btn');
+      const invitationNextBtn = document.getElementById('invitation-next');
+      const budgetBtn = document.getElementById('budget-btn');
+      const budgetNextBtn = document.getElementById('budget-next');
+      const vendorBtn = document.getElementById('vendor-btn');
+      const vendorNextBtn = document.getElementById('vendor-next');
+      const schedulingBtn = document.getElementById('scheduling-btn');
+
+      // References to forms
+      const eventForm = document.getElementById('event-form');
+      const guestForm = document.getElementById('guest-form');
+      const budgetForm = document.getElementById('budget-form');
+      const vendorForm = document.getElementById('vendor-form');
+      const scheduleForm = document.getElementById('scheduleForm');
+      const guestListDisplay = document.getElementById('guest-list-display');
+      const eventDetailsDiv = document.getElementById('event-details');
+
+      let guestList = [];
+
+      createEventBtn.addEventListener('click', () => {
+        toggleSection(createEventSection);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        toggleSection(guestListSection);
+      });
+
+      guestListBtn.addEventListener('click', () => {
+        toggleSection(guestListSection);
+      });
+
+      guestNextBtn.addEventListener('click', () => {
+        toggleSection(manageInvitationsSection);
+      });
+
+      invitationBtn.addEventListener('click', () => {
+        toggleSection(manageInvitationsSection);
+      });
+
+      invitationNextBtn.addEventListener('click', () => {
+        toggleSection(budgetTrackingSection);
+      });
+
+      budgetBtn.addEventListener('click', () => {
+        toggleSection(budgetTrackingSection);
+      });
+
+      budgetNextBtn.addEventListener('click', () => {
+        toggleSection(vendorCoordinationSection);
+      });
+
+      vendorBtn.addEventListener('click', () => {
+        toggleSection(vendorCoordinationSection);
+      });
+
+      vendorNextBtn.addEventListener('click', () => {
+        toggleSection(schedulingSection);
+      });
+
+      schedulingBtn.addEventListener('click', () => {
+        toggleSection(schedulingSection);
+      });
+
+      // Function to toggle sections
+      function toggleSection(section) {
+        document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+        section.style.display = 'block';
+      }
+
+      // Handle event form submission
+      eventForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const eventName = document.getElementById('event-name').value;
+        const eventDate = document.getElementById('event-date').value;
+        const eventTheme = document.getElementById('event-theme').value;
+        const event = {
+          name: eventName,
+          date: eventDate,
+          theme: eventTheme
+        };
+        localStorage.setItem('event', JSON.stringify(event));
+        alert(`Event "${eventName}" scheduled on ${eventDate} with "${eventTheme}" theme created.`);
+        eventForm.reset();
+
+        displayEventDetails();
+      });
+
+      // Handle guest form submission
+      guestForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const guestName = document.getElementById('guest-name').value;
+        const guestEmail = document.getElementById('guest-email').value;
+        guestList.push({ name: guestName, email: guestEmail });
+        updateGuestList();
+        guestForm.reset();
+      });
+
+      // Update guest list display
+      function updateGuestList() {
+        guestListDisplay.innerHTML = '';
+        guestList.forEach((guest, index) => {
+          const li = document.createElement('li');
+          li.style.display = 'flex';
+          li.style.justifyContent = 'space-between';
+          li.style.alignItems = 'center';
+          li.style.padding = '10px 0';
+          li.style.fontSize = '1.3rem';
+
+          const span = document.createElement('span');
+          span.textContent = `${guest.name} (${guest.email})`;
+
+          const removeButton = document.createElement('i');
+          removeButton.className = 'fas fa-times remove-icon';
+          removeButton.style.cursor = 'pointer';
+          removeButton.style.color = '#ff0000';
+          removeButton.style.fontSize = '16px';
+          removeButton.addEventListener('click', () => {
+            removeGuest(index);
+          });
+
+          li.appendChild(span);
+          li.appendChild(removeButton);
+          guestListDisplay.appendChild(li);
+        });
+      }
+
+      function removeGuest(index) {
+        guestList.splice(index, 1);
+        updateGuestList();
+      }
+
+      // Manage invitations
+      const sendInvitationsBtn = document.getElementById('send-invitations');
+      const trackRsvpsBtn = document.getElementById('track-rsvps');
+
+      sendInvitationsBtn.addEventListener('click', () => {
+        const event = JSON.parse(localStorage.getItem('event'));
+        guestList.forEach(guest => {
+          sendEmail(guest.email, `Invitation to ${event.name}`, `You are invited to ${event.name} on ${event.date}. Theme: ${event.theme}`);
+        });
+        alert('Invitations sent to all guests.');
+      });
+
+      trackRsvpsBtn.addEventListener('click', () => {
+        alert('Tracking RSVPs...');
+      });
+
+      // Function to send email (stub)
+      function sendEmail(to, subject, body) {
+        console.log(`Sending email to ${to} with subject "${subject}" and body "${body}"`);
+        // Here you would actually send the email using your preferred email service.
+      }
+
+      // Budget Tracking
+      const expenseList = document.getElementById('expenseList');
+      const totalBudget = document.getElementById('totalBudget');
+      let totalExpenses = 0;
+
+      budgetForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const expenseName = document.getElementById('expenseName').value;
+        const expenseAmount = parseFloat(document.getElementById('expenseAmount').value);
+
+        const listItem = document.createElement('li');
+        listItem.textContent = `${expenseName}: $${expenseAmount.toFixed(2)}`;
+        expenseList.appendChild(listItem);
+
+        totalExpenses += expenseAmount;
+        totalBudget.textContent = `Total Expenses: $${totalExpenses.toFixed(2)}`;
+
+        budgetForm.reset();
+      });
+
+      // Vendor Coordination
+      const vendorList = document.getElementById('vendorList');
+
+      vendorForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const vendorName = document.getElementById('vendorName').value;
+        const vendorService = document.getElementById('vendorService').value;
+        const vendorContact = document.getElementById('vendorContact').value;
+
+        const listItem = document.createElement('li');
+        listItem.textContent = `${vendorName}: ${vendorService} (Contact: ${vendorContact})`;
+        vendorList.appendChild(listItem);
+
+        vendorForm.reset();
+      });
+
+      // Scheduling
+      const taskList = document.getElementById('taskList');
+
+      scheduleForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const taskName = document.getElementById('taskName').value;
+        const taskDate = document.getElementById('taskDate').value;
+
+        const listItem = document.createElement('li');
+        listItem.textContent = `${taskName} - ${taskDate}`;
+        taskList.appendChild(listItem);
+
+        scheduleForm.reset();
+      });
+
+      // Display event details in scheduling section
+      // function displayEventDetails() {
+      //   const event = JSON.parse(localStorage.getItem('event'));
+      //   if (event) {
+      //     const eventDetailsBtn = document.createElement('button');
+      //     eventDetailsBtn.className = 'event-image-button';
+      //     eventDetailsBtn.style.backgroundImage = `url(${event.image})`;
+      //     eventDetailsBtn.innerHTML = `
+      //       <span>${event.name}</span>
+      //       <span>${event.date}</span>
+      //       <span>${event.theme}</span>
+      //       <button class="delete-event">Delete</button>
+      //     `;
+
+      //     eventDetailsBtn.addEventListener('click', () => {
+      //       alert(`Event Details:\nName: ${event.name}\nDate: ${event.date}\nTheme: ${event.theme}`);
+      //     });
+
+      //     eventDetailsBtn.querySelector('.delete-event').addEventListener('click', (e) => {
+      //       e.stopPropagation();
+      //       localStorage.removeItem('event');
+      //       eventDetailsDiv.innerHTML = '';
+      //       alert('Event deleted.');
+      //     });
+
+      //     eventDetailsDiv.innerHTML = '';
+      //     eventDetailsDiv.appendChild(eventDetailsBtn);
+      //   }
+      // }
+
+      function displayEventDetails() {
+    const event = JSON.parse(localStorage.getItem('event'));
+    if (event) {
+        const eventDetailsBtn = document.createElement('button');
+        eventDetailsBtn.className = 'event-image-button';
+        eventDetailsBtn.style.backgroundImage = `url(images/birthschedule.jpg)`;
+        eventDetailsBtn.style.backgroundSize = 'cover'; // Ensure the image covers the button
+        eventDetailsBtn.style.backgroundPosition = 'center'; // Center the image
+        eventDetailsBtn.style.backgroundRepeat = 'no-repeat'; // Prevent image repetition
+
+        // Set dimensions of the button to increase image size
+        eventDetailsBtn.style.width = '20rem'; // Adjust width as needed
+        eventDetailsBtn.style.height = '30rem'; // Adjust height as needed
+
+        eventDetailsBtn.innerHTML = `
+            <span>${event.name}</span>
+            <span>${event.date}</span>
+            <span>${event.theme}</span>
+            <button class="delete-event">Delete</button>
+        `;
+
+        eventDetailsBtn.addEventListener('click', () => {
+            alert(`Event Details:\nName: ${event.name}\nDate: ${event.date}\nTheme: ${event.theme}`);
+        });
+
+        eventDetailsBtn.querySelector('.delete-event').addEventListener('click', (e) => {
+            e.stopPropagation();
+            localStorage.removeItem('event');
+            eventDetailsDiv.innerHTML = '';
+            alert('Event deleted.');
+        });
+
+        eventDetailsDiv.innerHTML = '';
+        eventDetailsDiv.appendChild(eventDetailsBtn);
+    }
+}
+
+
+      // Load event details on page load
+      displayEventDetails();
+    });
+
+    
+  </script>
+</body>
+</html>
